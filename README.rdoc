@@ -1,0 +1,3 @@
+== Asterisk On Rails
+	Web Interface for Asterisk PBX.
+	** Under-development **
