@@ -17,8 +17,8 @@ module AMIMethods
 		@count.next!
 	end
 
-	def read_hash
-		ary  = read_array
+	def read_hash( no_event = true )
+		ary  = read_array( no_event )
 		hash = {}
 		ary.each{|line|
 			if( line =~ /^([^:]*): (.*)$/ )
@@ -37,14 +37,18 @@ module AMIMethods
 		}
 		return hash
 	end
-	def read_array
-		data = []
-		while( line = @socket.gets )
-			line.strip!
-			break if( line == '' )
-			data.push( line )
+	def read_array( no_event = true )
+		while( true )
+			data = []
+			while( line = @socket.gets )
+				line.strip!
+				break if( line == '' )
+				data.push( line )
+			end
+			if( !no_event || data[0] !~ /^Event:/ )
+				return data
+			end
 		end
-		data
 	end
 
 	def write_array( data )
@@ -52,8 +56,8 @@ module AMIMethods
 		@socket.write( tmp_data )
 	end
 
-	def read()
-		read_array()
+	def read( no_event = true )
+		read_array( no_event )
 	end
 
 	def write( action, data = nil )

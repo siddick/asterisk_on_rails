@@ -1,12 +1,14 @@
 module FileHandler
 
 	def copy_file( from_filename, to_filename )
-		ary = write( 'updateconfig', { 'srcfilename' => from_filename,
+		write( 'updateconfig', { 'srcfilename' => from_filename,
 				 'dstfilename' => to_filename } );
+		read_array
 	end
 
 	def read_file( filename )
-		ary = write( 'getconfig', { 'filename'=>filename } )
+		write( 'getconfig', { 'filename'=>filename } )
+		ary = read_array
 		if( !ary or !ary[0] or ary[0] !~ /^Response: Success$/i )
 			raise "File Open Error"
 		end
@@ -20,9 +22,10 @@ module FileHandler
 		operations.push( "action: updateconfig" )
 		operations.push( "srcfilename: #{filename}" )
 		operations.push( "dstfilename: #{filename}" )
+		operations.push( "reload: yes" )
 
 		if( truncate )
-			old_config.each{|cat|
+			old_config.each{|cat,values|
 				do_config( operations, count, 'delcat', cat )
 				count.next!
 			}
@@ -47,7 +50,6 @@ module FileHandler
 				end
 			}
 		}
-		print operations.inspect, "\n"
 		write_array( operations )
 		return read()
 	end
