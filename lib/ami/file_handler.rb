@@ -1,4 +1,10 @@
 module FileHandler
+
+	def copy_file( from_filename, to_filename )
+		ary = write( 'updateconfig', { 'srcfilename' => from_filename,
+				 'dstfilename' => to_filename } );
+	end
+
 	def read_file( filename )
 		ary = write( 'getconfig', { 'filename'=>filename } )
 		if( !ary or !ary[0] or ary[0] !~ /^Response: Success$/i )
@@ -7,15 +13,23 @@ module FileHandler
 		parse_file_config( ary )
 	end
 
-	def update_file( filename, config )
+	def update_file( filename, config, truncate = false )
 		old_config = read_file( filename )
 		operations = []
 		count = '000000'
 		operations.push( "action: updateconfig" )
 		operations.push( "srcfilename: #{filename}" )
-		operations.push( "dstfilename: #{filename}1" )
+		operations.push( "dstfilename: #{filename}" )
+
+		if( truncate )
+			old_config.each{|cat|
+				do_config( operations, count, 'delcat', cat )
+				count.next!
+			}
+		end
+
 		config.each{|cat, data|
-			if( old_config[cat] )
+			if( !truncate and old_config[cat] )
 				do_config( operations, count, 'delcat', cat )
 				count.next!
 			end
@@ -39,7 +53,7 @@ module FileHandler
 	end
 
 	def write_file( filename, config )
-		read_file
+		update_file( filename, config, true )
 	end
 
 	private 

@@ -6,7 +6,8 @@ module AMIMethods
 	end
 
 	def login( username, password )
-		ary = write( 'login', {'username'=>username, 'secret'=>password} )
+		write( 'login', {'username'=>username, 'secret'=>password} )
+		ary = read_array()
 		if( !ary or !ary[0] or ary[0] !~ /^Response: Success$/i )
 			raise "Login Failed"
 		end
@@ -16,6 +17,26 @@ module AMIMethods
 		@count.next!
 	end
 
+	def read_hash
+		ary  = read_array
+		hash = {}
+		ary.each{|line|
+			if( line =~ /^([^:]*): (.*)$/ )
+				key = $1.dup
+				value = $2.dup
+				if( hash[key] )
+					if( hash[key].class == Array )
+						hash[key].push( value )
+					else
+						hash[key] = [ hash[key], value ]
+					end
+				else
+					hash[key] = value 
+				end
+			end
+		}
+		return hash
+	end
 	def read_array
 		data = []
 		while( line = @socket.gets )
@@ -32,28 +53,22 @@ module AMIMethods
 	end
 
 	def read()
-		data = read_array()
+		read_array()
 	end
 
-	def write_only( action, data = nil )
+	def write( action, data = nil )
+		action_id = get_new_action_id
 		tmp_data = []
 		tmp_data.push( "action: #{action}" )
-		tmp_data.push( "actionid: #{get_new_action_id}" )
+		tmp_data.push( "actionid: #{action_id}" )
 		if( data && data.size > 0 )
 			data.each{|val|
 				tmp_data.push( val.join(": ") )
 			}
 		end
 		write_array( tmp_data )
+		return action_id
 	end
 
-	def write( action, data = nil)
-		write_only( action, data )
-		return read()
-	end
-
-	def file( filename )
-		AMI::File.new( self, filename )
-	end
 
 end
