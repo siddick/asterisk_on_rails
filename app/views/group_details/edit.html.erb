@@ -1,0 +1,12 @@
+<h1>Editing group_detail</h1>
+
+<% form_for(@group_detail) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @group_detail %> |
+<%= link_to 'Back', group_details_path %>

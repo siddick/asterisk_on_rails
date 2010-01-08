@@ -1,0 +1,173 @@
+  [4;36;1mSQL (2.5ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-01-07 17:42:24) [GET]
+
+ActionController::RoutingError (No route matches "/gg" with {:method=>:get}):
+  <internal:prelude>:8:in `synchronize'
+  /siddick/local/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /siddick/local/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /siddick/local/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (203.5ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (230.9ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (3.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100107121524)
+  [4;35;1mSQL (1.5ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (350.8ms)[0m   [0;1mCREATE TABLE "users" ("id" serial primary key, "login_id" character varying(25), "md5_password" character varying(50), "name" character varying(50), "group_id" integer, "login_at" timestamp, "login_status" character varying(25), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mUser Create (27.4ms)[0m   [0mINSERT INTO "users" ("login_id", "md5_password", "name", "group_id", "login_at", "login_status", "created_at", "updated_at") VALUES(E'admin', E'21232f297a57a5a743894a0e4a801fc3', E'Admin', 1, '2010-01-07 12:33:23.116606', E'logout', '2010-01-07 12:33:23.464920', '2010-01-07 12:33:23.464920')[0m
+  [4;36;1mSQL (21.3ms)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mUser Create (2.7ms)[0m   [0mINSERT INTO "users" ("login_id", "md5_password", "name", "group_id", "login_at", "login_status", "created_at", "updated_at") VALUES(E'siddick', E'a720d8863ecf7a0cacbab6c65b4e523e', E'Mohammed Siddick.E', 1, '2010-01-07 12:33:23.981149', E'logout', '2010-01-07 12:33:23.983996', '2010-01-07 12:33:23.983996')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mSQL (2.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107121524')[0m
+  [4;36;1mSQL (188.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (3.6ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100107121524)
+Migrating to CreatePbxDetails (20100107125435)
+  [4;35;1mSQL (1.5ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (299.4ms)[0m   [0;1mCREATE TABLE "pbx_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "host" character varying(50), "pbx_type" character varying(25), "login_name" character varying(50), "login_password" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (2.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107125435')[0m
+  [4;36;1mSQL (144.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (3.7ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100107121524)
+Migrating to CreatePbxDetails (20100107125435)
+  [4;35;1mSQL (2.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (3.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePbxDetails (20100107125435)
+  [4;36;1mSQL (1.7ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (103.1ms)[0m   [0mDROP TABLE "pbx_details"[0m
+  [4;36;1mSQL (19.1ms)[0m   [0;1mDELETE FROM schema_migrations WHERE version = '20100107125435'[0m
+  [4;35;1mSQL (221.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100107121524)
+Migrating to CreatePbxDetails (20100107125435)
+  [4;36;1mSQL (1.6ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (380.9ms)[0m   [0mCREATE TABLE "pbx_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "host" character varying(50), "pbx_type" character varying(25), "login_name" character varying(50), "login_password" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mPbxDetail Create (8.8ms)[0m   [0;1mINSERT INTO "pbx_details" ("name", "description", "host", "pbx_type", "login_name", "login_password", "created_at", "updated_at") VALUES(E'local_asterisk', E'Local Asterisk', E'localhost', E'asterisk', E'pbx', E'pbx', '2010-01-07 14:04:17.010365', '2010-01-07 14:04:17.010365')[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mSELECT currval('pbx_details_id_seq')[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100107125435')[0m
+  [4;35;1mSQL (239.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (3.6ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePbxDetails (20100107125435)
+  [4;36;1mSQL (2.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (14.4ms)[0m   [0mDROP TABLE "pbx_details"[0m
+  [4;36;1mSQL (5.8ms)[0m   [0;1mDELETE FROM schema_migrations WHERE version = '20100107125435'[0m
+  [4;35;1mSQL (160.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100107121524)
+Migrating to CreatePbxDetails (20100107125435)
+  [4;36;1mSQL (1.4ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (390.1ms)[0m   [0mCREATE TABLE "pbx_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "host" character varying(50), "pbx_type" character varying(25), "login_name" character varying(50), "login_password" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mPbxDetail Create (4.1ms)[0m   [0;1mINSERT INTO "pbx_details" ("name", "description", "host", "pbx_type", "login_name", "login_password", "created_at", "updated_at") VALUES(E'local_asterisk', E'Local Asterisk', E'localhost', E'asterisk', E'pbx', E'pbx', '2010-01-07 14:06:37.433185', '2010-01-07 14:06:37.433185')[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mSELECT currval('pbx_details_id_seq')[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100107125435')[0m
+  [4;35;1mSQL (202.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (33.8ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100107121524)
+Migrating to CreatePbxDetails (20100107125435)
+Migrating to CreateGroupDetails (20100107141138)
+  [4;35;1mSQL (1.5ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (733.6ms)[0m   [0;1mCREATE TABLE "group_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "roles" character varying(100), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (22.7ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107141138')[0m
+  [4;36;1mSQL (126.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (302.1ms)[0m   [0;1mDROP TABLE "group_details"[0m
+  [4;35;1mSQL (253.1ms)[0m   [0mCREATE TABLE "group_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "roles" character varying(100), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (156.7ms)[0m   [0;1mDROP TABLE "pbx_details"[0m
+  [4;35;1mSQL (337.1ms)[0m   [0mCREATE TABLE "pbx_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "host" character varying(50), "pbx_type" character varying(25), "login_name" character varying(50), "login_password" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (138.3ms)[0m   [0;1mDROP TABLE "users"[0m
+  [4;35;1mSQL (371.7ms)[0m   [0mCREATE TABLE "users" ("id" serial primary key, "login_id" character varying(25), "md5_password" character varying(50), "name" character varying(50), "group_id" integer, "login_at" timestamp, "login_status" character varying(25), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;36;1mSQL (3.7ms)[0m   [0;1mSELECT version FROM "schema_migrations"[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (3.6ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100107121524)
+Migrating to CreatePbxDetails (20100107125435)
+Migrating to CreateGroupDetails (20100107141138)
+  [4;35;1mSQL (2.6ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (172.2ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (190.3ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (3.6ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100107121524)
+  [4;35;1mSQL (1.5ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (209.0ms)[0m   [0;1mCREATE TABLE "users" ("id" serial primary key, "login_id" character varying(25), "md5_password" character varying(50), "name" character varying(50), "group_id" integer, "login_at" timestamp, "login_status" character varying(25), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mUser Create (3.9ms)[0m   [0mINSERT INTO "users" ("login_id", "md5_password", "name", "group_id", "login_at", "login_status", "created_at", "updated_at") VALUES(E'admin', E'21232f297a57a5a743894a0e4a801fc3', E'Admin', 1, '2010-01-08 09:47:21.227074', E'logout', '2010-01-08 09:47:21.698288', '2010-01-08 09:47:21.698288')[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mUser Create (2.7ms)[0m   [0mINSERT INTO "users" ("login_id", "md5_password", "name", "group_id", "login_at", "login_status", "created_at", "updated_at") VALUES(E'siddick', E'a720d8863ecf7a0cacbab6c65b4e523e', E'Mohammed Siddick.E', 1, '2010-01-08 09:47:22.159033', E'logout', '2010-01-08 09:47:22.161737', '2010-01-08 09:47:22.161737')[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mSQL (2.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107121524')[0m
+  [4;36;1mSQL (210.4ms)[0m   [0;1mCOMMIT[0m
+Migrating to CreatePbxDetails (20100107125435)
+  [4;35;1mSQL (2.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (195.1ms)[0m   [0;1mCREATE TABLE "pbx_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "host" character varying(50), "pbx_type" character varying(25), "login_name" character varying(50), "login_password" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mPbxDetail Create (3.6ms)[0m   [0mINSERT INTO "pbx_details" ("name", "description", "host", "pbx_type", "login_name", "login_password", "created_at", "updated_at") VALUES(E'local_asterisk', E'Local Asterisk', E'localhost', E'asterisk', E'pbx', E'pbx', '2010-01-08 09:47:22.787442', '2010-01-08 09:47:22.787442')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSELECT currval('pbx_details_id_seq')[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107125435')[0m
+  [4;36;1mSQL (80.2ms)[0m   [0;1mCOMMIT[0m
+Migrating to CreateGroupDetails (20100107141138)
+  [4;35;1mSQL (2.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (227.7ms)[0m   [0;1mCREATE TABLE "group_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "roles" character varying(100), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mSQL (2.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107141138')[0m
+  [4;36;1mSQL (226.7ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mSET client_min_messages TO 'panic'[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSET client_min_messages TO 'notice'[0m
+  [4;36;1mSQL (219.1ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [4;35;1mSQL (213.2ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100107121524)
+  [4;35;1mSQL (1.5ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (545.2ms)[0m   [0;1mCREATE TABLE "users" ("id" serial primary key, "login_id" character varying(25), "md5_password" character varying(50), "name" character varying(50), "group_id" integer, "login_at" timestamp, "login_status" character varying(25), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mUser Create (4.2ms)[0m   [0mINSERT INTO "users" ("login_id", "md5_password", "name", "group_id", "login_at", "login_status", "created_at", "updated_at") VALUES(E'admin', E'21232f297a57a5a743894a0e4a801fc3', E'Admin', 1, '2010-01-08 09:59:41.224084', E'logout', '2010-01-08 09:59:41.616306', '2010-01-08 09:59:41.616306')[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mUser Create (2.5ms)[0m   [0mINSERT INTO "users" ("login_id", "md5_password", "name", "group_id", "login_at", "login_status", "created_at", "updated_at") VALUES(E'siddick', E'a720d8863ecf7a0cacbab6c65b4e523e', E'Mohammed Siddick.E', 1, '2010-01-08 09:59:42.001742', E'logout', '2010-01-08 09:59:42.004661', '2010-01-08 09:59:42.004661')[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSELECT currval('users_id_seq')[0m
+  [4;35;1mSQL (2.9ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107121524')[0m
+  [4;36;1mSQL (239.2ms)[0m   [0;1mCOMMIT[0m
+Migrating to CreatePbxDetails (20100107125435)
+  [4;35;1mSQL (2.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (180.5ms)[0m   [0;1mCREATE TABLE "pbx_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "host" character varying(50), "pbx_type" character varying(25), "login_name" character varying(50), "login_password" character varying(50), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mPbxDetail Create (3.8ms)[0m   [0mINSERT INTO "pbx_details" ("name", "description", "host", "pbx_type", "login_name", "login_password", "created_at", "updated_at") VALUES(E'local_asterisk', E'Local Asterisk', E'localhost', E'asterisk', E'pbx', E'pbx', '2010-01-08 09:59:42.578565', '2010-01-08 09:59:42.578565')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSELECT currval('pbx_details_id_seq')[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107125435')[0m
+  [4;36;1mSQL (52.7ms)[0m   [0;1mCOMMIT[0m
+Migrating to CreateGroupDetails (20100107141138)
+  [4;35;1mSQL (2.4ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (378.3ms)[0m   [0;1mCREATE TABLE "group_details" ("id" serial primary key, "name" character varying(25), "description" character varying(100), "roles" character varying(500), "created_at" timestamp, "updated_at" timestamp) [0m
+  [4;35;1mGroupDetail Create (5.9ms)[0m   [0mINSERT INTO "group_details" ("name", "description", "roles", "created_at", "updated_at") VALUES(E'admin', E'Administrator', E'*', '2010-01-08 09:59:43.156664', '2010-01-08 09:59:43.156664')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSELECT currval('group_details_id_seq')[0m
+  [4;35;1mGroupDetail Create (2.6ms)[0m   [0mINSERT INTO "group_details" ("name", "description", "roles", "created_at", "updated_at") VALUES(E'pbx_manager', E'PBX Manager', E'', '2010-01-08 09:59:43.241443', '2010-01-08 09:59:43.241443')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSELECT currval('group_details_id_seq')[0m
+  [4;35;1mGroupDetail Create (2.5ms)[0m   [0mINSERT INTO "group_details" ("name", "description", "roles", "created_at", "updated_at") VALUES(E'supervisor', E'Supervisor', E'', '2010-01-08 09:59:43.251385', '2010-01-08 09:59:43.251385')[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mSELECT currval('group_details_id_seq')[0m
+  [4;35;1mGroupDetail Create (3.2ms)[0m   [0mINSERT INTO "group_details" ("name", "description", "roles", "created_at", "updated_at") VALUES(E'user', E'User', E'', '2010-01-08 09:59:43.261266', '2010-01-08 09:59:43.261266')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSELECT currval('group_details_id_seq')[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100107141138')[0m
+  [4;36;1mSQL (323.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
