@@ -1,0 +1,2 @@
+class ConfigFileTest < ConfigFile
+end

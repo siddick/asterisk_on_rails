@@ -1,0 +1,18 @@
+<h1>Listing pbxes</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @pbxes.each do |pbx| %>
+  <tr>
+    <td><%= link_to 'Show', pbx %></td>
+    <td><%= link_to 'Edit', edit_pbx_path(pbx) %></td>
+    <td><%= link_to 'Destroy', pbx, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New pbx', new_pbx_path %>

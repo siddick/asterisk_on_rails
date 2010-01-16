@@ -1,0 +1,12 @@
+<h1>Editing pbx</h1>
+
+<% form_for(@pbx) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @pbx %> |
+<%= link_to 'Back', pbxes_path %>

@@ -9,36 +9,67 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100107141138) do
+ActiveRecord::Schema.define(:version => 20100116150603) do
 
-  create_table "group_details", :force => true do |t|
-    t.string   "name",        :limit => 25
-    t.string   "description", :limit => 100
-    t.string   "roles",       :limit => 500
+  create_table "config_files", :force => true do |t|
+    t.integer  "pbx_id"
+    t.string   "type",       :limit => 25
+    t.string   "name",       :limit => 100
+    t.text     "config"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "pbx_details", :force => true do |t|
-    t.string   "name",           :limit => 25
-    t.string   "description",    :limit => 100
-    t.string   "host",           :limit => 50
-    t.string   "pbx_type",       :limit => 25
-    t.string   "login_name",     :limit => 50
-    t.string   "login_password", :limit => 50
+  add_index "config_files", ["pbx_id", "type", "name"], :name => "index_config_files_on_pbx_id_and_type_and_name"
+  add_index "config_files", ["pbx_id", "type"], :name => "index_config_files_on_pbx_id_and_type"
+  add_index "config_files", ["pbx_id"], :name => "index_config_files_on_pbx_id"
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "groups", ["name"], :name => "index_groups_on_name", :unique => true
+
+  create_table "pbxes", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "type"
+    t.string   "host"
+    t.string   "username"
+    t.string   "password"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pbxes", ["name"], :name => "index_pbxes_on_name", :unique => true
+
+  create_table "user_group_maps", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_group_maps", ["group_id"], :name => "index_user_group_maps_on_group_id"
+  add_index "user_group_maps", ["user_id", "group_id"], :name => "index_user_group_maps_on_user_id_and_group_id", :unique => true
+  add_index "user_group_maps", ["user_id"], :name => "index_user_group_maps_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "login_id",     :limit => 25
     t.string   "md5_password", :limit => 50
     t.string   "name",         :limit => 50
-    t.integer  "group_id"
+    t.boolean  "active"
     t.datetime "login_at"
     t.string   "login_status", :limit => 25
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["login_id"], :name => "index_users_on_login_id", :unique => true
 
 end

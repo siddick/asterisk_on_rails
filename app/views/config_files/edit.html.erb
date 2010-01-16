@@ -1,0 +1,12 @@
+<h1>Editing config_file</h1>
+
+<% form_for(@config_file) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @config_file %> |
+<%= link_to 'Back', config_files_path %>
