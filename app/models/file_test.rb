@@ -1,2 +1,0 @@
-class ConfigFileTest < ConfigFile
-end

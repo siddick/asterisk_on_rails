@@ -1,0 +1,2 @@
+class PbxAsterisk < Pbx
+end

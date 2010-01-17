@@ -7,7 +7,6 @@ class CreateUserGroupMaps < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :user_group_maps, :user_id
     add_index :user_group_maps, :group_id
     add_index :user_group_maps, [ :user_id, :group_id ], :unique => true
 
@@ -16,6 +15,9 @@ class CreateUserGroupMaps < ActiveRecord::Migration
 
     UserGroupMap.create( :user_id => User.find_by_login_id('siddick').id,
       :group_id => Group.find_by_name('manager').id )
+
+    UserGroupMap.create( :user_id => User.find_by_login_id('siddick').id,
+      :group_id => Group.find_by_name('user').id )
 
     UserGroupMap.create( :user_id => User.find_by_login_id('guest').id,
       :group_id => Group.find_by_name('user').id )

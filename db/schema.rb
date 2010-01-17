@@ -14,15 +14,13 @@ ActiveRecord::Schema.define(:version => 20100116150603) do
   create_table "config_files", :force => true do |t|
     t.integer  "pbx_id"
     t.string   "type",       :limit => 25
-    t.string   "name",       :limit => 100
+    t.string   "context",    :limit => 100
     t.text     "config"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "config_files", ["pbx_id", "type", "name"], :name => "index_config_files_on_pbx_id_and_type_and_name"
-  add_index "config_files", ["pbx_id", "type"], :name => "index_config_files_on_pbx_id_and_type"
-  add_index "config_files", ["pbx_id"], :name => "index_config_files_on_pbx_id"
+  add_index "config_files", ["pbx_id", "type", "context"], :name => "index_config_files_on_pbx_id_and_type_and_context"
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -39,8 +37,7 @@ ActiveRecord::Schema.define(:version => 20100116150603) do
     t.string   "description"
     t.string   "type"
     t.string   "host"
-    t.string   "username"
-    t.string   "password"
+    t.text     "config"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -57,7 +54,6 @@ ActiveRecord::Schema.define(:version => 20100116150603) do
 
   add_index "user_group_maps", ["group_id"], :name => "index_user_group_maps_on_group_id"
   add_index "user_group_maps", ["user_id", "group_id"], :name => "index_user_group_maps_on_user_id_and_group_id", :unique => true
-  add_index "user_group_maps", ["user_id"], :name => "index_user_group_maps_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "login_id",     :limit => 25
