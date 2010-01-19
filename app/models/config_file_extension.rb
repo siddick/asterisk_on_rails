@@ -1,0 +1,2 @@
+class ConfigFileExtension < ConfigFile
+end

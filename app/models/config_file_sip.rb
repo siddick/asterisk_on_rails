@@ -1,0 +1,2 @@
+class ConfigFileSip < ConfigFile
+end

@@ -1,8 +1,6 @@
 class Pbx < ActiveRecord::Base
-  has_many :config_files
 
   serialize :config
-
 
   validates_presence_of :name
   validates_presence_of :description
