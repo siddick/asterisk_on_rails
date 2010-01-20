@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100119052247) do
+ActiveRecord::Schema.define(:version => 20100120052931) do
 
   create_table "asterisk_extensions", :force => true do |t|
     t.integer  "pbx_id",                                   :null => false
@@ -22,6 +22,40 @@ ActiveRecord::Schema.define(:version => 20100119052247) do
   end
 
   add_index "asterisk_extensions", ["pbx_id", "context", "exten"], :name => "index_asterisk_extensions_on_pbx_id_and_context_and_exten"
+
+  create_table "asterisk_iaxes", :force => true do |t|
+    t.integer  "pbx_id",                                            :null => false
+    t.string   "name",        :limit => 30,                         :null => false
+    t.string   "username",    :limit => 30
+    t.string   "type",        :limit => 6,                          :null => false
+    t.string   "secret",      :limit => 50
+    t.string   "md5secret",   :limit => 32
+    t.string   "dbsecret",    :limit => 100
+    t.string   "notransfer",  :limit => 10,  :default => "yes"
+    t.string   "inkeys",      :limit => 100
+    t.string   "outkeys",     :limit => 100
+    t.string   "auth",        :limit => 100, :default => "md5",     :null => false
+    t.string   "accountcode", :limit => 100
+    t.string   "amaflags",    :limit => 100
+    t.string   "callerid",    :limit => 100
+    t.string   "context",     :limit => 100,                        :null => false
+    t.string   "defaultip",   :limit => 15
+    t.string   "host",        :limit => 31,  :default => "dynamic", :null => false
+    t.string   "language",    :limit => 5
+    t.string   "mailbox",     :limit => 50
+    t.string   "deny",        :limit => 95
+    t.string   "permit",      :limit => 95
+    t.string   "qualify",     :limit => 4,   :default => "yes"
+    t.string   "disallow",    :limit => 100, :default => "all",     :null => false
+    t.string   "allow",       :limit => 100, :default => "ulaw",    :null => false
+    t.string   "ipaddr",      :limit => 15
+    t.integer  "port",                       :default => 0
+    t.integer  "regseconds",                 :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "asterisk_iaxes", ["pbx_id", "username"], :name => "index_asterisk_iaxes_on_pbx_id_and_username", :unique => true
 
   create_table "asterisk_sips", :force => true do |t|
     t.integer  "pbx_id",                                                               :null => false
@@ -70,6 +104,38 @@ ActiveRecord::Schema.define(:version => 20100119052247) do
   end
 
   add_index "asterisk_sips", ["pbx_id", "name"], :name => "index_asterisk_sips_on_pbx_id_and_name"
+
+  create_table "asterisk_voicemails", :force => true do |t|
+    t.integer  "pbx_id",                                           :null => false
+    t.string   "customer_id",    :limit => 11,  :default => "0",   :null => false
+    t.string   "context",        :limit => 50,  :default => "",    :null => false
+    t.string   "mailbox",        :limit => 11,  :default => "0",   :null => false
+    t.string   "password",       :limit => 11,  :default => "0",   :null => false
+    t.string   "fullname",       :limit => 150, :default => "",    :null => false
+    t.string   "email",          :limit => 50,  :default => "",    :null => false
+    t.string   "pager",          :limit => 50,  :default => "",    :null => false
+    t.string   "tz",             :limit => 10,  :default => "EST", :null => false
+    t.string   "attach",         :limit => 4,   :default => "yes", :null => false
+    t.string   "saycid",         :limit => 4,   :default => "yes", :null => false
+    t.string   "dialout",        :limit => 10,  :default => "",    :null => false
+    t.string   "callback",       :limit => 10,  :default => "",    :null => false
+    t.string   "review",         :limit => 4,   :default => "no",  :null => false
+    t.string   "operator",       :limit => 4,   :default => "no",  :null => false
+    t.string   "envelope",       :limit => 4,   :default => "no",  :null => false
+    t.string   "sayduration",    :limit => 4,   :default => "no",  :null => false
+    t.integer  "saydurationm",                  :default => 1,     :null => false
+    t.string   "sendvoicemail",  :limit => 4,   :default => "no",  :null => false
+    t.string   "delete",         :limit => 4,   :default => "no",  :null => false
+    t.string   "nextaftercmd",   :limit => 4,   :default => "yes", :null => false
+    t.string   "forcename",      :limit => 4,   :default => "no",  :null => false
+    t.string   "forcegreetings", :limit => 4,   :default => "no",  :null => false
+    t.string   "hidefromdir",    :limit => 4,   :default => "yes", :null => false
+    t.datetime "stamp",                                            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "asterisk_voicemails", ["pbx_id", "context", "mailbox"], :name => "index_asterisk_voicemails_on_pbx_id_and_context_and_mailbox", :unique => true
 
   create_table "config_files", :force => true do |t|
     t.integer  "pbx_id"
